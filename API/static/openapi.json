@@ -1,0 +1,308 @@
+{
+    "paths": {
+      "/WallMeasures/{usdzFile}/": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Room"
+                  }
+                }
+              }
+            },
+            "default": {
+              "$ref": "#/components/responses/DEFAULT_ERROR"
+            }
+          },
+          "tags": [
+            "Configurator API"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "usdzFile",
+              "required": true,
+              "description": "File name",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "usdzFile",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "info": {
+      "title": "Configurator",
+      "version": "v1"
+    },
+    "tags": [
+      {
+        "name": "Configurator API",
+        "description": "List of endpoints used for the API."
+      }
+    ],
+    "swagger": "2.0",
+    "host" : "api-wall-measures-391914.appspot.com",
+    "components": {
+      "schemas": {
+        "Error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": "Error code"
+            },
+            "message": {
+              "type": "string",
+              "description": "Error message"
+            },
+            "status": {
+              "type": "string",
+              "description": "Error name"
+            },
+            "errors": {
+              "type": "object",
+              "description": "Errors"
+            }
+          }
+        },
+        "PaginationMetadata": {
+          "type": "object",
+          "properties": {
+            "total": {
+              "type": "integer"
+            },
+            "total_pages": {
+              "type": "integer"
+            },
+            "first_page": {
+              "type": "integer"
+            },
+            "last_page": {
+              "type": "integer"
+            },
+            "page": {
+              "type": "integer"
+            },
+            "previous_page": {
+              "type": "integer"
+            },
+            "next_page": {
+              "type": "integer"
+            }
+          }
+        },
+        "Point": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "z": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "y": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            }
+          }
+        },
+        "Corners": {
+          "type": "object",
+          "properties": {
+            "bottomLeft": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "topLeft": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "bottomRight": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "middleLeft": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "topRight": {
+              "$ref": "#/components/schemas/Point"
+            }
+          }
+        },
+        "Obstacle": {
+          "type": "object",
+          "properties": {
+            "distanceFromLeftWall": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "transform": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "corners": {
+              "$ref": "#/components/schemas/Corners"
+            },
+            "bottomDistanceFromBottomWall": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "height": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "width": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "center": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "topDistanceFromBottomWall": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "distanceFromRightWall": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            }
+          }
+        },
+        "Wall": {
+          "type": "object",
+          "properties": {
+            "transform": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "corners": {
+              "$ref": "#/components/schemas/Corners"
+            },
+            "listObstacles": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Obstacle"
+              }
+            },
+            "height": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "width": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "default": null
+            },
+            "nbObstacles": {
+              "type": "integer",
+              "default": 0
+            },
+            "center": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "default": null
+            }
+          }
+        },
+        "Room": {
+          "type": "object",
+          "properties": {
+            "WallNumber": {
+              "type": "integer",
+              "default": 0
+            },
+            "ListWall": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Wall"
+              }
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "default": null
+            },
+            "id": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        }
+      },
+      "responses": {
+        "DEFAULT_ERROR": {
+          "description": "Default error response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

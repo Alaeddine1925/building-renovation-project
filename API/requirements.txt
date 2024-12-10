@@ -1,0 +1,14 @@
+flask
+flask-restful
+pandas
+flask_cors
+usd-core
+google
+google_auth_oauthlib  
+google.auth 
+google-cloud-storage
+google.cloud
+google-api-python-client
+marshmallow-dataclass
+flask-smorest
+flask.views
